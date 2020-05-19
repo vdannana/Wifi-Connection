@@ -2,6 +2,14 @@ import Configuration as conf
 import Common_Functions as cf
 import sys
 import time
+import os
+
+# Create Folder
+if not os.path.exists(conf.Output_Folder):
+    os.mkdir(conf.Output_Folder)
+    print("Directory ", conf.Output_Folder,  " Created ")
+else:
+    print("Directory ", conf.Output_Folder,  " already exists")
 
 # Connect to Wi-Fi
 if(conf.option == 0):

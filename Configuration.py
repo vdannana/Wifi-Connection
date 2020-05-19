@@ -1,6 +1,6 @@
 SSID = "Venkat_Mobile"
 password = "Venkat1999"
-option = 3
+option = 2
 connection_time = 3
 Profile_type = 0
 Open_Profile_File = 'Requirement\Wi-Fi-Open.xml'
