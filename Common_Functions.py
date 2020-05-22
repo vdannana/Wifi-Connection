@@ -12,7 +12,7 @@ def openwifi(SSID):
     pname = create_open_profile(SSID)
     addProfile(pname)
     time.sleep(2)
-    result = connect_network(SSID)
+    connect_network(SSID)
     time.sleep(5)
     print_Wifi_details()
 
@@ -22,7 +22,7 @@ def securedwifi(SSID,password):
     pname = create_secure_profile(conf.SSID,conf.password)
     addProfile(pname)
     time.sleep(2)
-    result = connect_network(conf.SSID)
+    connect_network(conf.SSID)
     time.sleep(3)
     print_Wifi_details()
 
@@ -39,6 +39,14 @@ def toHex(s):
     for ele in lst:  
         str1 += ele
     return str1
+
+# prints the connected profile information.
+def is_connected():
+    """ Check if system is connected to any Wi-Fi network. If true,
+    return ssid_name and interface name else return None.
+    """
+    command = 'netsh wlan show interfaces'
+    output = subprocess.run(command, shell=True)
 
 
 # Adding created profile to the saved Wi-Fi profiles 
@@ -66,9 +74,10 @@ def connect_network(iname):
     # Check if system reconnect to same network successfully.
     if output.returncode != 0:
         print(output.stdout)
-        exit(0)
+        return True
     else:
         print(output.stdout)
+        return False
 
 
 # Creats open wifi profile.
